@@ -1,5 +1,3 @@
-# Psicocare
-
 # PsicoCare - Aplicativo Para Consultas Psicológicas a Valores Sociais
 
 ## Descrição
