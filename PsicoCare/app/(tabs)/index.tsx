@@ -1,74 +1,146 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import React from 'react';
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-
-export default function HomeScreen() {
+const App = () => {
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
+    <View style={styles.container}>
+      {/* Título do App */}
+      <Text style={styles.title}>PsicoCare</Text>
+
+      {/* Formulário de Login */}
+      <View style={styles.formContainer}>
+        <Text style={styles.loginTitle}>Login</Text>
+
+        {/* Campo de Email */}
+        <TextInput
+          style={styles.input}
+          placeholder="Email"
+          keyboardType="email-address"
+          autoCapitalize="none"
         />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12'
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+
+        {/* Campo de Senha */}
+        <TextInput
+          style={styles.input}
+          placeholder="Senha"
+          secureTextEntry
+        />
+
+        {/* Botão de Login */}
+        <TouchableOpacity
+          style={styles.loginButton}
+          onPress={() => console.log('Login pressionado')}
+        >
+          <Text style={styles.buttonText}>Entrar</Text>
+        </TouchableOpacity>
+
+        {/* Divisor */}
+        <View style={styles.dividerContainer}>
+          <View style={styles.dividerLine} />
+          <Text style={styles.dividerText}>ou</Text>
+          <View style={styles.dividerLine} />
+        </View>
+
+        {/* Botão de Login como Profissional */}
+        <TouchableOpacity
+          style={styles.professionalButton}
+          onPress={() => console.log('Login como Profissional pressionado')}
+        >
+          <Text style={styles.buttonText}>Entrar como Profissional</Text>
+        </TouchableOpacity>
+      </View>
+
+      {/* Link para Cadastro */}
+      <View style={styles.signupContainer}>
+        <Text style={styles.signupText}>Não tem uma conta? </Text>
+        <TouchableOpacity onPress={() => console.log('Cadastro pressionado')}>
+          <Text style={styles.signupLink}>Cadastre-se</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
   );
-}
+};
+
+export default App;
 
 const styles = StyleSheet.create({
-  titleContainer: {
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#f3f4f6', // Cor de fundo cinza claro
+  },
+  title: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    color: '#2563eb', // Azul
+    marginBottom: 20,
+  },
+  formContainer: {
+    width: '80%',
+    backgroundColor: 'white',
+    padding: 20,
+    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  loginTitle: {
+    fontSize: 24,
+    fontWeight: '600',
+    color: '#1e293b', // Cinza escuro
+    marginBottom: 16,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: '#d1d5db', // Cinza claro
+    borderRadius: 8,
+    padding: 12,
+    marginBottom: 16,
+  },
+  loginButton: {
+    backgroundColor: '#2563eb', // Azul
+    padding: 14,
+    borderRadius: 8,
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  professionalButton: {
+    backgroundColor: '#16a34a', // Verde
+    padding: 14,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: '600',
+  },
+  dividerContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    marginVertical: 16,
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  dividerLine: {
+    flex: 1,
+    height: 1,
+    backgroundColor: '#d1d5db', // Cinza claro
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  dividerText: {
+    marginHorizontal: 10,
+    color: '#6b7280', // Cinza médio
+  },
+  signupContainer: {
+    flexDirection: 'row',
+    marginTop: 20,
+  },
+  signupText: {
+    color: '#6b7280', // Cinza médio
+  },
+  signupLink: {
+    color: '#2563eb', // Azul
+    fontWeight: '600',
   },
 });
