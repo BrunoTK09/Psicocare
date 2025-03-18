@@ -4,15 +4,24 @@ import { RFValue } from 'react-native-responsive-fontsize';
 
 const { width, height } = Dimensions.get('window');
 
-const App = () => {
+const ProfessionalLoginScreen = () => {
   return (
     <View style={styles.container}>
       {/* Título do App */}
       <Text style={styles.title}>PsicoCare</Text>
+      <Text style={styles.subtitle}>Área do Profissional</Text>
 
       {/* Formulário de Login */}
       <View style={styles.formContainer}>
         <Text style={styles.loginTitle}>Login</Text>
+
+        {/* Campo de CRP */}
+        <TextInput
+          style={styles.input}
+          placeholder="Número do CRP"
+          keyboardType="numeric"
+          autoCapitalize="none"
+        />
 
         {/* Campo de Email */}
         <TextInput
@@ -32,39 +41,29 @@ const App = () => {
         {/* Botão de Login */}
         <TouchableOpacity
           style={styles.loginButton}
-          onPress={() => console.log('Login pressionado')}
+          onPress={() => console.log('Login do Profissional pressionado')}
         >
           <Text style={styles.buttonText}>Entrar</Text>
         </TouchableOpacity>
 
-        {/* Divisor */}
-        <View style={styles.dividerContainer}>
-          <View style={styles.dividerLine} />
-          <Text style={styles.dividerText}>ou</Text>
-          <View style={styles.dividerLine} />
-        </View>
-
-        {/* Botão de Login como Profissional */}
-        <TouchableOpacity
-          style={styles.professionalButton}
-          onPress={() => console.log('Login como Profissional pressionado')}
-        >
-          <Text style={styles.buttonText}>Entrar como Profissional</Text>
+        {/* Link para Esqueci a Senha */}
+        <TouchableOpacity onPress={() => console.log('Esqueci a senha pressionado')}>
+          <Text style={styles.forgotPasswordText}>Esqueci minha senha</Text>
         </TouchableOpacity>
       </View>
 
-      {/* Link para Cadastro */}
+      {/* Link para Cadastro de Profissional */}
       <View style={styles.signupContainer}>
         <Text style={styles.signupText}>Não tem uma conta? </Text>
-        <TouchableOpacity onPress={() => console.log('Cadastro pressionado')}>
-          <Text style={styles.signupLink}>Cadastre-se</Text>
+        <TouchableOpacity onPress={() => console.log('Cadastro de Profissional pressionado')}>
+          <Text style={styles.signupLink}>Cadastre-se como Profissional</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
 };
 
-export default App;
+export default ProfessionalLoginScreen;
 
 const styles = StyleSheet.create({
   container: {
@@ -75,10 +74,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: width * 0.05, // 5% da largura da tela
   },
   title: {
-    fontSize: RFValue(24), // Fonte responsiva
+    fontSize: RFValue(28), // Fonte responsiva
     fontWeight: 'bold',
     color: '#2563eb', // Azul
-    marginBottom: height * 0.02, // 2% da altura da tela
+    marginBottom: height * 0.01, // 1% da altura da tela
+  },
+  subtitle: {
+    fontSize: RFValue(18), // Fonte responsiva
+    color: '#4b5563', // Cinza escuro
+    marginBottom: height * 0.03, // 3% da altura da tela
   },
   formContainer: {
     width: width * 0.9, // 90% da largura da tela
@@ -112,31 +116,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: height * 0.02, // 2% da altura da tela
   },
-  professionalButton: {
-    backgroundColor: '#16a34a', // Verde
-    padding: height * 0.02, // 2% da altura da tela
-    borderRadius: 8,
-    alignItems: 'center',
-  },
   buttonText: {
     color: 'white',
     fontSize: RFValue(16), // Fonte responsiva
     fontWeight: '600',
   },
-  dividerContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: height * 0.02, // 2% da altura da tela
-  },
-  dividerLine: {
-    flex: 1,
-    height: 1,
-    backgroundColor: '#d1d5db', // Cinza claro
-  },
-  dividerText: {
-    marginHorizontal: width * 0.03, // 3% da largura da tela
-    color: '#6b7280', // Cinza médio
+  forgotPasswordText: {
+    color: '#2563eb', // Azul
     fontSize: RFValue(14), // Fonte responsiva
+    textAlign: 'center',
+    marginTop: height * 0.01, // 1% da altura da tela
   },
   signupContainer: {
     flexDirection: 'row',
